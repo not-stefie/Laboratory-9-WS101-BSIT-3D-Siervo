@@ -1,0 +1,27 @@
+
+type Product {
+    field_id: ID!
+    name: String!
+    price: Float!
+}
+
+# READ operations
+type Query {
+    # Fetches all products
+    allProducts: [Product!]!
+
+    # Fetches a product by its ID
+    productById(id: ID!): Product
+}
+
+# CREATE, UPDATE, DELETE operations
+type Mutation {
+    # CREATE
+    createProduct(name: String!, price: Float!): Product!
+
+    # UPDATE
+    updateProduct(id: ID!, name: String!, price: Float!): Product
+
+    # DELETE
+    deleteProduct(id: ID!): Boolean!
+}
