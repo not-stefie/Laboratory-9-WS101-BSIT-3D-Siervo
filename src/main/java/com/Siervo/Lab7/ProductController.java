@@ -1,5 +1,7 @@
-package com.Siervo.Lab7;
+package com.Siervo.Lab7.controller;
 
+import com.Siervo.Lab7.entity.Product;
+import com.Siervo.Lab7.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +20,14 @@ public class ProductController {
         this.productService = productService;
     }
 
-    // READ ALL
+    // READ ALL PRODUCTS
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    // READ ONE
+    // READ ONE PRODUCT
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);
@@ -35,14 +37,14 @@ public class ProductController {
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
-    // CREATE
+    // CREATE PRODUCT
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        Product newProduct = productService.addProduct(product);
-        return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
+        Product savedProduct = productService.addProduct(product);
+        return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
 
-    // UPDATE
+    // UPDATE PRODUCT
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
         Product updatedProduct = productService.updateProduct(id, product);
@@ -52,7 +54,7 @@ public class ProductController {
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }
 
-    // DELETE
+    // DELETE PRODUCT
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         boolean deleted = productService.deleteProduct(id);

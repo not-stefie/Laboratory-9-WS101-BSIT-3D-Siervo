@@ -1,5 +1,7 @@
 package com.Siervo.Lab7;
 
+import com.Siervo.Lab7.service.ProductService;
+import com.Siervo.Lab7.entity.Product;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
